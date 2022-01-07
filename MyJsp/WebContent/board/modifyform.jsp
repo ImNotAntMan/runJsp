@@ -17,7 +17,7 @@
 	ResultSet rs = null;
 	try {
 		Class.forName("com.mysql.jdbc.Driver"); // JDBC 드라이버 로드
-		String url = "jdbc:mysql://localhost:3306/mysql";	// 접속 url
+		String url = "jdbc:mysql://localhost:3306/javaweb";	// 접속 url
 		String user = "root";
 		String passwd = "";
 		conn = DriverManager.getConnection(url, user, passwd);
@@ -35,7 +35,7 @@
 	<h3>글 수정</h3><br>
 	<form method="post" action="./modify_end.jsp">
 		<input type="hidden" name="b_num" value="<%=b_num %>" />
-		제목 : <input type="text" name="b_subject" value="<%=b_subject%>"><br>
+		제  목 : <input type="text" name="b_subject" value="<%=b_subject%>"><br>
 		작성자 : <%=b_name%><br>
 		내용 : <textarea cols="44" rows="10" name="b_contents"><%=b_contents%></textarea><br>
 		<input type="submit" value="수정">

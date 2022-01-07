@@ -18,7 +18,7 @@
 	ResultSet rs = null;
 	try {
 		Class.forName("com.mysql.jdbc.Driver"); // JDBC 드라이버 로드
-		String url = "jdbc:mysql://localhost:3306/mysql";	// 접속 url
+		String url = "jdbc:mysql://localhost:3306/javaweb";	// 접속 url
 		String user = "root";
 		String passwd = "";
 		conn = DriverManager.getConnection(url, user, passwd);
