@@ -1,7 +1,3 @@
 INDEX VERSION 1.131
-C:\myWorkSpace\runJsp\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4030908261.index
-\MyJsp\WebContent\WEB-INF
-C:\myWorkSpace\runJsp\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\399420868.index
+D:\myWorkSpace\runJsp\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\399420868.index
 \MySpring\src\main\java
-C:\myWorkSpace\runJsp\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3543137329.index
-\MyJsp\WebContent\WEB-INF
