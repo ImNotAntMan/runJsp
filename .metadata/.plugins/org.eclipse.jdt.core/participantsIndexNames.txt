@@ -1,4 +1,5 @@
 INDEX VERSION 1.131
+<<<<<<< HEAD
 C:\myWorkSpace\runJsp\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2345268854.index
 \MySpring\src\main\java
 C:\myWorkSpace\runJsp\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3654262320.index
@@ -33,3 +34,7 @@ C:\myWorkSpace\runJsp\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2212
 \ShopAdmin\src\main\java
 C:\myWorkSpace\runJsp\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3750260232.index
 \ShopAdmin\src\main\java
+=======
+D:\myWorkSpace\runJsp\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\399420868.index
+\MySpring\src\main\java
+>>>>>>> 471243f987c5b0977bbe6435c483984ef8f8a17d

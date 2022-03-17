@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
-Built-By: UserX
+<<<<<<< HEAD
+Built-By: jkM
+=======
+Built-By: ikaru
+>>>>>>> 2d7556d88620696c7b1d7be76e8a3b353e107279
 Build-Jdk: 15.0.1
 Created-By: Maven Integration for Eclipse
 
