@@ -1,11 +1,13 @@
 package com.it.mapper;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.it.domain.BoardVO;
+import com.it.domain.PageDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -18,9 +20,10 @@ public class BoardMapperTest {
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper mapper;
 	
-	//@Test
+	@Test
 	public void testGetList() {
-		mapper.getList().forEach(board -> log.info(board));// 레코드만큼 반복하는 람다식
+		PageDTO pagedto = new PageDTO();
+		mapper.getList(pagedto).forEach(board -> log.info(board));// 레코드만큼 반복하는 람다식
 	}
 	
 	//@Test
@@ -36,7 +39,7 @@ public class BoardMapperTest {
 	//@Test
 	public void testRead() {
 		BoardVO board = new BoardVO();
-		board.setB_num(13);	// 1을 전달 VO 객체에 저장
+		board.setB_num(2);	// 1을 전달 VO 객체에 저장
 		board = mapper.read(board);	// read 메소드 호출해서 객체 변환
 		log.info(board);
 	}

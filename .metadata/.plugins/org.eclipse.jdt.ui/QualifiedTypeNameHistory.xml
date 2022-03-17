@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.it.domain.BoardVO"/>
+    <fullyQualifiedTypeName name="com.it.notice.NoticeVO"/>
+    <fullyQualifiedTypeName name="com.it.service.BoardService"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+    <fullyQualifiedTypeName name="com.it.mapper.NoticeMapper"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="com.it.domain.MemberVO"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="org.junit.Test"/>
+    <fullyQualifiedTypeName name="com.it.service.ProductService"/>
+    <fullyQualifiedTypeName name="com.it.domain.ProductVO"/>
+    <fullyQualifiedTypeName name="com.it.mapper.CartMapper"/>
+    <fullyQualifiedTypeName name="com.it.domain.CartmainVO"/>
+    <fullyQualifiedTypeName name="com.it.domain.CartdetailDTO"/>
+    <fullyQualifiedTypeName name="com.it.domain.CartmemberDTO"/>
+    <fullyQualifiedTypeName name="com.it.domain.OrdersubVO"/>
+    <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="com.it.domain.CartsubVO"/>
+    <fullyQualifiedTypeName name="com.it.domain.OrdermainVO"/>
+    <fullyQualifiedTypeName name="com.it.domain.PageViewDTO"/>
+    <fullyQualifiedTypeName name="jdk.internal.org.jline.utils.Log"/>
+    <fullyQualifiedTypeName name="com.it.domain.PageDTO"/>
+    <fullyQualifiedTypeName name="com.shopadmin.domain.AdminVO"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="com.shopadmin.domain.ProductVO"/>
+    <fullyQualifiedTypeName name="com.shopadmin.mapper.ProductMapper"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.shopadmin.domain.PageDTO"/>
 </qualifiedTypeNameHistroy>

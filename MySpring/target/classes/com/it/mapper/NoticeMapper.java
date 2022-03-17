@@ -8,6 +8,8 @@ public interface NoticeMapper {
 
 	public List<NoticeVO> getList();
 	
+	public int getTotalCount();
+	
 	public void insert(NoticeVO notice);
 	
 	public NoticeVO read(NoticeVO notice);

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.it.mapper.CartMapper">
+	<select id="getListMain" resultType="com.it.domain.CartmainVO">
+		select * from tblcartmain order by cm_code desc
+	</select>
+	<insert id="insertMain">
+		insert into tblcartmain (m_id) 
+		values (#{m_id})
+	</insert>
+	<select id="readMain" resultType="com.it.domain.CartmainVO">
+		select * from tblcartmain where cm_code = #{cm_code}
+	</select>
+	<select id="readMainid" resultType="com.it.domain.CartmainVO">
+		select * from tblcartmain where m_id = #{m_id}
+	</select>
+	<delete id="deleteMain">
+		delete from tblcartmain where cm_code = #{cm_code} 
+	</delete>
+	
+	<select id="getListSub" resultType="com.it.domain.CartsubVO">
+		select * from tblcartsub order by cs_code desc
+	</select>
+	<select id="getListCart" resultType="com.it.domain.CartsubVO">
+		select * from tblcartsub where cm_code = #{cm_code}
+	</select>
+	<select id="getListCartDetail" resultType="com.it.domain.CartdetailDTO">
+		select cs.cs_code, p.p_code, p.p_name, p.p_price, cs.cs_cnt, p.p_price*cs.cs_cnt cs_money    
+		from tblproduct p, tblcartsub cs 
+		where p.p_code =  cs.p_code  
+		and cs.cm_code = #{cm_code}
+	</select>
+	<select id="getCartTotal" resultType="com.it.domain.CartmemberDTO">
+		select sum(p.p_price * cs.cs_cnt) cm_total  
+		from tblproduct p, tblcartsub cs 
+		where p.p_code = cs.p_code 
+		and cs.cm_code = #{cm_code}
+	</select>
+	<insert id="insertSub">
+		insert into tblcartsub (cm_code, p_code, cs_cnt) 
+		values (#{cm_code}, #{p_code}, #{cs_cnt})
+	</insert>
+	<select id="readSub" resultType="com.it.domain.CartsubVO">
+		select * from tblcartsub where cs_code = #{cs_code}
+	</select>
+	<select id="readSubProduct" resultType="com.it.domain.CartsubVO">
+		select * from tblcartsub where p_code = #{p_code} and cm_code = #{cm_code}
+	</select>
+ 	<update id="updateSub">
+		update tblcartsub set cs_cnt = #{cs_cnt} where cs_code = #{cs_code}
+	</update>
+	<delete id="deleteSub">
+		delete from tblcartsub where cs_code = #{cs_code} 
+	</delete>
+	<delete id="deletesuball">
+		delete from tblcartsub where cm_code = #{cm_code} 
+	</delete>
+</mapper>

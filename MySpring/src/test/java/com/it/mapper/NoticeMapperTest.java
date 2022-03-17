@@ -1,6 +1,5 @@
 package com.it.mapper;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -19,7 +18,7 @@ public class NoticeMapperTest {
 	@Setter(onMethod_ = @Autowired)
 	private NoticeMapper mapper;
 	
-	@Test
+	//@Test
 	public void testGetList() {
 		mapper.getList().forEach(notice -> log.info(notice));		
 	}

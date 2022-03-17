@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopadmin.mapper.Board2Mapper">
+	<select id="getList" resultType="com.shopadmin.domain.Board2VO">
+		select * from tblboard2 order by b_num desc
+		 limit #{pageAmount} offset ${(pageNum - 1) * pageAmount}
+	</select>
+	<select id="getTotalCount" resultType="int">
+		select count(b_num) count from tblboard2
+	</select>
+	<insert id="insert">
+		insert into tblboard2 (b_subject, b_name, b_contents, b_file) 
+		values (#{b_subject}, #{b_name}, #{b_contents}, #{b_file})
+	</insert>
+	<select id="read" resultType="com.shopadmin.domain.Board2VO">
+		select * from tblboard2 where b_num = #{b_num}
+	</select>
+	<update id="update">
+		update tblboard2 set 
+		b_subject = #{b_subject}, b_name = #{b_name}, b_contents = #{b_contents}, b_file = #{b_file} 
+		where b_num = #{b_num}
+	</update>
+	<delete id="delete">
+		delete from tblboard2 where b_num = #{b_num} 
+	</delete>
+</mapper>

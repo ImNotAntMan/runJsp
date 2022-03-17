@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="ImportExportAction">
+		<item key="ImportExportPage.STORE_SELECTED_EXPORT_WIZARD_ID" value="org.eclipse.jst.servlet.ui.internal.wizard.WebComponentExportWizard"/>
+		<list key="ImportExportPage.STORE_EXPANDED_EXPORT_CATEGORIES">
+			<item value="org.eclipse.wst.web.ui"/>
+		</list>
+	</section>
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jst.jsp.ui.internal.wizard.NewJSPWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.wst.web.ui"/>
+		</list>
+	</section>
+	<section name="EditorSelectionDialog">
+		<item key="EditorSelectionDialog.STORE_ID_FILE_EXTENSION" value="1"/>
+		<item key="EditorSelectionDialog.STORE_ID_INTERNAL_EXTERNAL" value="false"/>
+		<item key="EditorSelectionDialog.STORE_ID_DESCR" value="org.eclipse.wst.server.ui.editor"/>
+	</section>
+	<section name="PreferencesExportWizard">
+		<item key="" value="eclipseConfiguration.epf"/>
+		<item key="WizardPreferencesExportPage1.STORE_OVERWRITE_EXISTING_FILES_ID" value="false"/>
+		<item key="WizardPreferencesExportPage1.EXPORT_ALL_PREFERENCES_ID" value="false"/>
+		<list key="WizardPreferencesExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="eclipseConfiguration.epf"/>
+		</list>
+		<list key="WizardPreferencesExportPage1.TRANSFER_PREFERENCES_NAMES_ID">
+			<item value="org.eclipse.jdt.debug.ui.transfer.jres"/>
+			<item value="org.eclipse.jdt.internal.ui.transfer.codestyle"/>
+			<item value="org.eclipse.jdt.internal.core.transfer.compiler"/>
+		</list>
+	</section>
+	<section name="PreferencesImportWizard">
 	</section>
 </section>

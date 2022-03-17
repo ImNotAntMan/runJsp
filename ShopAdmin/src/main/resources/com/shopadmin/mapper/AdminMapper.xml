@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopadmin.mapper.AdminMapper">
+
+	<select id="read" resultType="com.shopadmin.domain.AdminVO">
+		select * from tbladmin where 
+		a_id = #{a_id} and a_passwd = hex(aes_encrypt(#{a_passwd}, sha2('202200309', 512)))
+	</select>
+	<select id="auth" resultType = "com.shopadmin.domain.AdminVO">
+		select * from tbladmin where a_id = #{a_id} 
+		and a_passwd = hex(aes_encrypt(#{a_passwd}, sha2('202200309', 512))) 
+	</select>
+</mapper>
