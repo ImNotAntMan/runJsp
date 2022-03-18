@@ -15,7 +15,10 @@ create table tblboard2 (
 	b_name varchar(50) not null,
 	b_date datetime not null default sysdate()
 );
-select * from tblboard2;
+select * from tbladmin where a_id ='admin';
+insert into tblboard2(b_subject, b_contents, b_name) 
+	select b_subject, b_contents, b_name from tblboard2;
+select * from tblboard2 order by b_num desc;
 select * from tblmember;
 ALTER TABLE tblmember ADD m_passwd VARCHAR(256) NOT NULL AFTER m_id;
 update tblmember set m_passwd = '1234';
@@ -42,7 +45,7 @@ create table tblcartmain (
 /* 장바구니 서브 */
 
 create table tblcartsub (
-	cs_code int not null primary key auto_increment,
+	cs_code int not null primary key auto_increment ,
 	cm_code int not null,
 	p_code int not null,
 	cs_cnt int not null, 
@@ -76,40 +79,41 @@ create table tblordersub(
 );
 
 create table tbladmin (
-	a_id varchar(50) not null primary key,
+	a_id varchar(100) not null primary key,
+	a_name varchar(100) not null,
 	a_passwd varchar(512) not null,
-	a_name varchar(50) not null,
 	a_rdate datetime not null default sysdate(),
 	a_udate datetime not null default sysdate()
 );
-insert into tbladmin (a_id, a_passwd, a_name) values 
-	('admin', hex(aes_encrypt('1234', sha2('202200309', 512))), '관리자');
-insert into tbladmin (a_id, a_passwd, a_name) values 
-	('subadmin', hex(aes_encrypt('12345', sha2('202200309', 512))), '보조관리자');
 
-select * from tbladmin;
-select * from tbladmin where a_passwd = hex(aes_encrypt('1234', sha2('202200309', 512)));
-select hex(aes_encrypt('1234', sha2('aabbcc', 512)));
+insert into tbladmin (a_id, a_name, a_passwd) 
+	values ('admin', '관리자', hex(aes_encrypt('1234', sha2('202200310', 512)))
+);
+insert into tbladmin (a_id, a_name, a_passwd) 
+	values ('subadmin', '부관리자', hex(aes_encrypt('1234', sha2('202200310', 512)))
+);
 
-select aes_decrypt(unhex('1E77A52EC2F562C2160437B7FF908D2B'), sha2('aabbcc', 512));
+select hex(aes_encrypt('1234', sha2('202200310', 512)));
 
-insert into tblmember(m_id, m_name) values ('tiger', '이순신');
-insert into tblmember(m_id, m_name) values ('lion', '홍범');
-insert into tblmember(m_id, m_name) values ('mycat', '도돌이');
+insert into tblmember(m_id, m_name, m_passwd) values ('ikarus', '홍범도', '1234');
+insert into tblmember(m_id, m_name, m_passwd) values ('tiger', '이순신', '1234');
+insert into tblmember(m_id, m_name, m_passwd) values ('lion', '홍범', '1234');
+insert into tblmember(m_id, m_name, m_passwd) values ('mycat', '도돌이', '1234');
 select * from tblmember;
 
-insert into tblproduct(p_name, p_price) values('냉장고', 300);
-insert into tblproduct(p_name, p_price) values('선풍기', 200);
-insert into tblproduct(p_name, p_price) values('에어컨', 400);
-insert into tblproduct(p_name, p_price) values('장수막걸리', 1300);
-insert into tblproduct(p_name, p_price) values('상당산성 막걸리', 1900);
+insert into tblproduct(p_name, p_price, p_code) values('김치냉장고', 133300, 1001);
+insert into tblproduct(p_name, p_price) values('에어컨선풍기', 200000);
+insert into tblproduct(p_name, p_price) values('얼음에어컨', 444400);
+insert into tblproduct(p_name, p_price) values('단명막걸리', 1300);
+insert into tblproduct(p_name, p_price) values('토끼', 14400);
+insert into tblproduct(p_name, p_price) values('불상', 14400);
 select * from tblproduct;
 
-insert into tblcartmain(m_id) values ('tiger');
+insert into tblcartmain(m_id, cm_code) values ('tiger', 1001);
 insert into tblcartmain(m_id) values ('lion');
 select * from tblcartmain;
 
-insert into tblcartsub(cm_code, p_code, cs_cnt) values(1001,1001,1);
+insert into tblcartsub(cs_code, cm_code, p_code, cs_cnt) values(1001, 1001,1001,1);
 insert into tblcartsub(cm_code, p_code, cs_cnt) values(1001,1004,4);
 insert into tblcartsub(cm_code, p_code, cs_cnt) values(1001,1005,3);
 insert into tblcartsub(cm_code, p_code, cs_cnt) values(1002,1002,1);
@@ -190,6 +194,7 @@ select sum(p.p_price * cs.cs_cnt)  Total
 /* 장바구니 lion의 모든 내용을 구매 */
 	
 insert into tblordermain(m_id) values('lion');
+insert into tblcartmain(m_id) values('lion');
 
 insert into tblordersub (om_code, p_code, os_cnt) 
 	select 1001, p_code, cs_cnt from tblcartsub 
@@ -225,12 +230,3 @@ delete from tblordersub;
 delete from tblordermain;
 delete from tblcartsub;
 delete from tblcartmain;
-
-insert into tblboard(b_subject, b_contents, b_name) 
-	select b_subject, b_contents, b_name from tblboard;
-insert into tblnotice(n_subject, n_contents, n_name)
-	select n_subject, n_contents, n_name from tblnotice;
-select count(*) count from tblnotice;	
-select count(*) count from tblboard;
-
-select * from tblboard order by b_num desc limit 10 offset 21; //3452

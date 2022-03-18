@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.it</groupId>
 	<artifactId>controller</artifactId>
-	<name>MySpring</name>
+	<name>ShopAdmin</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>

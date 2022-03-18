@@ -19,7 +19,7 @@
 		<property name="password" value=""></property>
 	</bean>
 	
-	<context:component-scan base-package="com.it.service" />
+	<context:component-scan base-package="com.shopmember.service" />
 
 <tx:annotation-driven />
 
@@ -29,5 +29,7 @@
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
-	<mybatis-spring:scan base-package="com.shopadmin.mapper" />
+	<mybatis-spring:scan base-package="com.shopmember.mapper" />
 </beans>
+
+

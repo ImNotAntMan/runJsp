@@ -3,24 +3,25 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shopadmin.mapper.ProductMapper">
-	<select id="getList" resultType="com.shopadmin.domain.ProductVO">
-		select * from tblproduct order by p_code desc 
-		limit ${pageAmount} offset (${pageNum} - 1) * ${pageAmount}
+	<select id="read" resultType="com.shopadmin.myapp.ProductVO">
+		select * from tblproduct where p_code = #{p_code}
 	</select>
-	<select id="getTotalCount" resultType="int">
-		select count(b_num) count from tblproduct
+	<select id="getList" resultType="com.shopadmin.myapp.ProductVO">
+		select * from tblproduct order by p_code asc
+		limit ${pageAmount} offset ${(pageNum - 1) * pageAmount}
 	</select>
 	<insert id="insert">
 		insert into tblproduct (p_name, p_price) 
 		values (#{p_name}, #{p_price})
 	</insert>
-	<select id="read" resultType="com.shopadmin.domain.ProductVO">
-		select * from tblproduct where p_code = #{p_code}
-	</select>
  	<update id="update">
-		update tblproduct set p_name = #{p_name}, p_price = #{p_price} where p_code = #{p_code}
+		update tblproduct set p_name = #{p_name}, p_price = #{p_price}
+		where p_code = #{p_code}
 	</update>
 	<delete id="delete">
 		delete from tblproduct where p_code = #{p_code} 
 	</delete>
+		<select id="getTotalCount" resultType="int">
+		select count(p_code) count from tblproduct
+	</select>
 </mapper>

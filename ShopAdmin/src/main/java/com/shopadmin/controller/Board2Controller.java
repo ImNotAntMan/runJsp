@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +19,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.shopadmin.domain.Board2VO;
-import com.shopadmin.domain.PageDTO;
-import com.shopadmin.domain.PageViewDTO;
+import com.shopadmin.myapp.Board2VO;
+import com.shopadmin.myapp.PageDTO;
+import com.shopadmin.myapp.PageViewDTO;
 import com.shopadmin.service.Board2Service;
 
 import lombok.Setter;
@@ -34,26 +35,6 @@ public class Board2Controller {
 	@Setter(onMethod_ = @Autowired)
 	private Board2Service service;
 	
-	@GetMapping("/read")
-	public void read(Board2VO board, Model model, PageDTO page) {
-		board = service.read(board);
-		model.addAttribute("board", board);
-		model.addAttribute("pageNum", page.getPageNum());
-	}
-	
-	@GetMapping("/update")
-	public void update(Board2VO board, Model model, PageDTO page) {
-		board = service.read(board);
-		model.addAttribute("board", board);
-		model.addAttribute("pageNum", page.getPageNum());		
-	}
-	
-	@PostMapping("/update")
-	public String update(Board2VO board, PageDTO page) {
-		service.update(board);
-		return "redirect:/board2/read?b_num=" + board.getB_num() + "&pageNum=" + page;
-	}
-	
 	@GetMapping("/list")
 	public void list(Model model, PageDTO page) {	// 객체를 저장해서 jsp 파일로 전송
 		// list.jsp에 데이터를 전달
@@ -63,23 +44,42 @@ public class Board2Controller {
 		log.info(pageview);
 		model.addAttribute("pageview", pageview);
 	}
+	
+	@GetMapping("/read")
+	public void read(Model model, Board2VO board, PageDTO page) {
+		board = service.read(board);
+		model.addAttribute("board", board);
+		model.addAttribute("pageNum", page.getPageNum());
+		
+	}
+	
+	@GetMapping("/update")
+	public void update(Board2VO board, Model model) {
+		board = service.read(board);
+		model.addAttribute("board", board);
+	}
+	
+	@PostMapping("/update")
+	public String update(Board2VO board, PageDTO page) {
+		service.update(board);
+		return "redirect:/board2/read?b_num=" + board.getB_num() + "&pageNum=" + page.getPageNum();
+	}
 
 	@GetMapping("/insert")
 	public void insert() {
 		// 페이지를 호출만 함
 	}
-
+	
 	@PostMapping("/insert")
-	public String fileupload(HttpServletRequest request) {
+	public void fileupload(HttpServletRequest request) {
 		DiskFileUpload upload =  new DiskFileUpload();
 		try {
 			List items = upload.parseRequest(request);	// 웹브라우저 전송 객체 생성해서 업로드 컴포넌트에 전달
 			Iterator params = items.iterator();	// 반복자 생성
-			String filepath = "C:\\myWorkSpace\\runJsp\\pds";
+			String filepath = "D:\\myWorkSpace\\runJsp\\pds";
 			Board2VO board = new Board2VO();
 			while(params.hasNext()) {	// form 객체가 있을 경우
 				FileItem item = (FileItem)params.next();	// 폼 경식 객체를 변수에 저장
-				System.out.println(item);
 				if(item.isFormField()) {	// 파일 형식이 아니라면
 					//p_code = item.getString();	// 파일보다 먼저 반환 됨
 					String fieldname = item.getFieldName();
@@ -94,51 +94,50 @@ public class Board2Controller {
 					}
 				} else {	// 바이너리 파일이라면 
 					String fname = item.getName();
-					log.info(fname);
 					if(fname != "") {
 						board.setB_file(fname);
+			        	System.out.println("file name : " + fname);
+			        	String ext = fname.substring(fname.lastIndexOf(".") + 1);
+			        	fname = getUuid() + "." + ext;
+			        	board.setB_filehash(fname);
 						File file = new File(filepath + "/" + fname);	// 파일객체 생성
+			        	System.out.println("hash file : " + fname);
+			        	System.out.println("extension : " + ext);
+
 						item.write(file);						
 					}
 				}
 			}
 			log.info(board);
 			service.insert(board);
-			return "redirect:/board2/list";
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		return null;
 	}
 	
 	@GetMapping("/download")
-	public void download(Board2VO board, HttpServletResponse response) {
-		try {
-			board = service.read(board);
-			String filepath = "C:\\myWorkSpace\\runJsp\\pds\\" + board.getB_file();
-			File file = new File(filepath); // 실제경로 지정
-			
-			// 자바에서의 다운로드가 아니라 웹브라우저에서의 다운로드로 인식시키기 위한 코드
-			// text/html 이 기본값
-			// 클라이언트 웹브라우저에 파일 다운로드로 처림됨
-			String newName = new String(file.getName().getBytes("utf-8"), "ISO-8859-1");
-			response.setHeader("Content-Disposition", "attachment;filename=" + newName);
-			log.info(file.getName());
-			log.info(newName);
-			System.out.println(board);
-			System.out.println(file.getName());
-			System.out.println(newName);
-			
-			FileInputStream fis = new FileInputStream(filepath);
-			OutputStream out = response.getOutputStream();
-			
-			int read = 0;	// 1024 단위로 읽은 바이트 수 
-			byte[] buffer = new byte[1024];	//임의 로 조정 가능
-			while((read = fis.read(buffer)) != -1) {	// 읽지 못하면 -1 반환
-				out.write(buffer, 0, read);	// 웹브라우저에 출력
-			}
-		} catch(Exception e) {
-			System.out.println(e);
-		}
+	public void download(HttpServletResponse response, Board2VO board) {
+        try {
+        	board = service.read(board);
+        	String path = "D:\\myWorkSpace\\runJsp\\pds\\" + board.getB_filehash();
+//        	File file = new File(path);
+        	String filename = new String(board.getB_file().getBytes("UTF-8"), "ISO-8859-1");
+
+        	response.setHeader("Content-Disposition", "attachment;filename=" + filename); // 다운로드 되거나 로컬에 저장되는 용도로 쓰이는지를 알려주는 헤더
+        	FileInputStream fileInputStream = new FileInputStream(path);
+        	OutputStream out = response.getOutputStream();
+        	int read = 0;
+        	byte[] buffer = new byte[1024];
+        	while((read =  fileInputStream.read(buffer)) != -1) {
+        		out.write(buffer);
+        	}
+        } catch (Exception e) {
+        		System.out.println(e);
+        }
+	}
+	
+	//uuid생성 
+	public static String getUuid() {
+		return UUID.randomUUID().toString().replaceAll("-", ""); 
 	}
 }

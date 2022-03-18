@@ -31,3 +31,5 @@
 	
 	<mybatis-spring:scan base-package="com.shopadmin.mapper" />
 </beans>
+
+

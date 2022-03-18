@@ -1,24 +1,24 @@
 package com.shopadmin.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-import com.shopadmin.domain.AdminVO;
+import com.shopadmin.myapp.AdminVO;
+import com.shopadmin.myapp.PageDTO;
 
-@Service
 public interface AdminService {
+	public List<AdminVO> getList(PageDTO page);
 	
-	public AdminVO read(AdminVO admin);	// 단일 레코드 조회
+	public AdminVO read(AdminVO admin);
 	
-//	public AdminVO read(String a_id);
+	public AdminVO read(String a_id);
 	
-	public Boolean auth(AdminVO admin);	// 아이디와 암호를 전달하여 인증 처리 T or F
+	public void insert(AdminVO admin);
 	
-//	public void insert(AdminVO admin);	// 레코드 입력
-//	
-//	public List<AdminVO> getList();	// 레코드 리스트
-//	
-//	public void update(AdminVO admin);	// 수정
-//	
-//	public void delete(AdminVO admin);	// 삭제
-
+	public void update(AdminVO admin);
+	
+	public void delete(AdminVO admin);
+	
+	public Boolean auth(AdminVO admin);
+	
+	public int getTotalCount();
 }

@@ -13,9 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import lombok.extern.log4j.Log4j;
+
 /**
  * Handles requests for the application home page.
  */
+@Log4j
 @Controller
 public class HomeController {
 	
@@ -36,10 +39,10 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		String a_id = (String) session.getAttribute("a_id");
 		String a_name = (String) session.getAttribute("a_name");
+		log.info(a_id);
 	
 		model.addAttribute("a_id", a_id);
-		model.addAttribute("a_name", a_name);
-		
+		model.addAttribute("a_name", a_name);		
 		return "home";
 	}
 	

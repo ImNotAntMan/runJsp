@@ -2,8 +2,8 @@ package com.shopadmin.mapper;
 
 import java.util.List;
 
-import com.shopadmin.domain.Board2VO;
-import com.shopadmin.domain.PageDTO;
+import com.shopadmin.myapp.Board2VO;
+import com.shopadmin.myapp.PageDTO;
 
 public interface Board2Mapper {
 	

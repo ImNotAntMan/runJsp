@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shopadmin.domain.Board2VO;
-import com.shopadmin.domain.PageDTO;
 import com.shopadmin.mapper.Board2Mapper;
+import com.shopadmin.myapp.Board2VO;
+import com.shopadmin.myapp.PageDTO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;

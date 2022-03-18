@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shopadmin.domain.PageDTO;
-import com.shopadmin.domain.ProductVO;
 import com.shopadmin.mapper.ProductMapper;
+import com.shopadmin.myapp.PageDTO;
+import com.shopadmin.myapp.ProductVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -15,13 +15,13 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Service
 public class ProductServiceImpl implements ProductService {
-
+	
 	@Setter(onMethod_ = @Autowired)
 	private ProductMapper mapper;
 
 	@Override
 	public List<ProductVO> getList(PageDTO page){
-		return mapper.getList();
+		return mapper.getList(page);
 	}
 	
 	@Override
@@ -41,5 +41,10 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void delete(ProductVO product) {
 		mapper.delete(product);
+	}
+	
+	@Override
+	public int getTotalCount() {
+		return mapper.getTotalCount(); 
 	}
 }
